@@ -1,0 +1,51 @@
+{% extends 'admin/base.html' %}
+
+{% block head_css %}
+    {{ super() }}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+    <link href="/static/css/style.css" rel="stylesheet" />
+{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand fw-bold" href="/dashboard">
+            <i class="fa fa-shield-halved me-2"></i>Admin Panel
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarAdmin">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarAdmin">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">
+                        <i class="fa fa-gauge me-1"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/admin/student/">
+                        <i class="fa fa-user-graduate me-1"></i>Students
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/course/">
+                        <i class="fa fa-book me-1"></i>Courses
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item me-3">
+                    <span class="text-white-50 small">
+                        <i class="fa fa-user-circle me-1"></i>admin
+                    </span>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-outline-light btn-sm" href="/logout">
+                        <i class="fa fa-right-from-bracket me-1"></i>Logout
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}

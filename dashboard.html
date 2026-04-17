@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard — Admin Panel{% endblock %}
+
+{% block content %}
+<!-- ─── Page Header ──────────────────────────────────────────────────────────── -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold mb-0">
+            <i class="fa fa-gauge text-primary me-2"></i>Dashboard
+        </h2>
+        <p class="text-muted small mb-0">Overview of your system at a glance</p>
+    </div>
+    <a href="/admin/" class="btn btn-primary btn-sm">
+        <i class="fa fa-sliders me-1"></i>Open Admin Panel
+    </a>
+</div>
+
+<!-- ─── Stats Cards ─────────────────────────────────────────────────────────── -->
+<div class="row g-4 mb-4">
+    <!-- Total Students -->
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100 stat-card stat-card-blue">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="stat-icon bg-primary bg-opacity-10 text-primary">
+                    <i class="fa fa-users fa-lg"></i>
+                </div>
+                <div>
+                    <div class="stat-number">{{ total_students }}</div>
+                    <div class="stat-label">Total Students</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Total Courses -->
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100 stat-card stat-card-purple">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="stat-icon bg-purple bg-opacity-10 text-purple">
+                    <i class="fa fa-book-open fa-lg"></i>
+                </div>
+                <div>
+                    <div class="stat-number">{{ total_courses }}</div>
+                    <div class="stat-label">Total Courses</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Students -->
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100 stat-card stat-card-green">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="stat-icon bg-success bg-opacity-10 text-success">
+                    <i class="fa fa-user-check fa-lg"></i>
+                </div>
+                <div>
+                    <div class="stat-number">{{ active_students }}</div>
+                    <div class="stat-label">Active Students</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inactive Students -->
+    <div class="col-12 col-sm-6 col-xl-3">
+        <div class="card border-0 shadow-sm h-100 stat-card stat-card-red">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div class="stat-icon bg-danger bg-opacity-10 text-danger">
+                    <i class="fa fa-user-xmark fa-lg"></i>
+                </div>
+                <div>
+                    <div class="stat-number">{{ inactive_students }}</div>
+                    <div class="stat-label">Inactive Students</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ─── Recent Students Table ───────────────────────────────────────────────── -->
+<div class="row">
+    <div class="col-12 col-lg-8">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-white border-0 d-flex justify-content-between align-items-center py-3">
+                <h5 class="fw-semibold mb-0">
+                    <i class="fa fa-clock-rotate-left text-primary me-2"></i>Recent Students
+                </h5>
+                <a href="/admin/student/" class="btn btn-outline-primary btn-sm">View All</a>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-4">Name</th>
+                                <th>Email</th>
+                                <th>Course</th>
+                                <th>Status</th>
+                                <th class="pe-4">Enrolled On</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in recent_students %}
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="avatar-sm bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center fw-semibold" style="width:36px;height:36px;">
+                                            {{ student.name[0].upper() }}
+                                        </div>
+                                        {{ student.name }}
+                                    </div>
+                                </td>
+                                <td class="text-muted">{{ student.email }}</td>
+                                <td>{{ student.course }}</td>
+                                <td>
+                                    {% if student.status == "Active" %}
+                                        <span class="badge bg-success">Active</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">Inactive</span>
+                                    {% endif %}
+                                </td>
+                                <td class="pe-4 text-muted small">
+                                    {{ student.created_at.strftime('%b %d, %Y') }}
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center text-muted py-4">
+                                    No students found. <a href="/admin/student/new/">Add one</a>.
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── Quick Links ─────────────────────────────────────────────────────── -->
+    <div class="col-12 col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+            <div class="card-header bg-white border-0 py-3">
+                <h5 class="fw-semibold mb-0">
+                    <i class="fa fa-bolt text-warning me-2"></i>Quick Actions
+                </h5>
+            </div>
+            <div class="card-body d-flex flex-column gap-3">
+                <a href="/admin/student/new/" class="btn btn-outline-primary d-flex align-items-center gap-2">
+                    <i class="fa fa-user-plus"></i>Add New Student
+                </a>
+                <a href="/admin/course/new/" class="btn btn-outline-purple d-flex align-items-center gap-2">
+                    <i class="fa fa-plus-circle"></i>Add New Course
+                </a>
+                <a href="/admin/student/" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+                    <i class="fa fa-list"></i>Manage Students
+                </a>
+                <a href="/admin/course/" class="btn btn-outline-secondary d-flex align-items-center gap-2">
+                    <i class="fa fa-list"></i>Manage Courses
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,123 @@
+/* ─── Global ───────────────────────────────────────────────────────────────── */
+body {
+    background-color: #f4f6fb;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ─── Login Page ───────────────────────────────────────────────────────────── */
+.login-page {
+    background: linear-gradient(135deg, #0d6efd 0%, #4c2fbf 100%);
+}
+
+.login-card {
+    border-radius: 16px;
+}
+
+.login-icon {
+    display: inline-block;
+}
+
+/* ─── Navbar ───────────────────────────────────────────────────────────────── */
+.navbar {
+    min-height: 60px;
+}
+
+.navbar-brand {
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+/* ─── Stat Cards ───────────────────────────────────────────────────────────── */
+.stat-card {
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+}
+
+.stat-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.stat-number {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #1a1a2e;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: #6c757d;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+}
+
+/* ─── Purple helpers (Bootstrap doesn't have these by default) ─────────────── */
+.text-purple { color: #6f42c1 !important; }
+.bg-purple { background-color: #6f42c1 !important; }
+.btn-outline-purple {
+    color: #6f42c1;
+    border-color: #6f42c1;
+}
+.btn-outline-purple:hover {
+    background-color: #6f42c1;
+    color: #fff;
+}
+
+/* ─── Cards ────────────────────────────────────────────────────────────────── */
+.card {
+    border-radius: 12px;
+}
+
+.card-header {
+    border-radius: 12px 12px 0 0 !important;
+}
+
+/* ─── Table ────────────────────────────────────────────────────────────────── */
+.table thead th {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6c757d;
+    border-bottom: 2px solid #e9ecef;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.table tbody tr:hover {
+    background-color: #f8f9ff;
+}
+
+/* ─── Flask-Admin overrides ────────────────────────────────────────────────── */
+.navbar-inverse {
+    display: none !important; /* hide Flask-Admin's own navbar; we have a custom one */
+}
+
+.content-header {
+    padding-top: 1rem;
+}
+
+/* Make Flask-Admin body match our bg */
+body.admin-body, .admin-body body {
+    background-color: #f4f6fb !important;
+}
+
+/* Style Flask-Admin action buttons */
+.btn-default {
+    border-color: #dee2e6;
+}
+
+/* Badge colors already handled via inline formatter */
